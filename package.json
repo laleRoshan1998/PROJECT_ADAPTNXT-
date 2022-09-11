@@ -1,0 +1,17 @@
+{
+  "name": "project_scraping",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12",
+    "csv": "^6.2.0",
+    "fs": "^0.0.1-security",
+    "request": "^2.88.2"
+  }
+}
