@@ -11,24 +11,30 @@ const URL = 'https://www.quill.com/hanging-file-folders/cbl/4378.html'
 axios.get(URL).then((response) => {
     // console.log(response);
     const $ = cheerio.load(response.data)
-    $('.SearchResultsNew').each(function(ele,index){
-        const product_name = $(index)
+   
+    $('.SearchResultsNew').each(function(index,ele){
+        
+        if(index>9){
+            return
+        }
+        console.log(index);
+        const product_name = $(ele)
             .find('#skuName')
             .text().replace(/,/g, '').trim()
         // console.log(product_name)
-        const Product_Price = $(index)
+        const Product_Price = $(ele)
             .find('#SkuPriceUpdate')
             .text()
             // console.log(Product_Price); 
-        const Item_Number = $(index)
+        const Item_Number = $(ele)
             .find('.iNumber')
             .text()
             // console.log(Item_Number);
-        const Model_Number = $(index)
+        const Model_Number = $(ele)
             .find('.model-number')
             .text()
             // console.log(Model_Number);
-        const Product_Description = $(index)
+        const Product_Description = $(ele)
             .find('.skuBrowseBullets')
             .text().replace(/,/g, '').trim()
             // console.log(Product_Description);
@@ -36,8 +42,6 @@ axios.get(URL).then((response) => {
             .find('.ML_s')
             .text()
             // console.log(product_category)
-
-
 
         writeStream.write(`${product_name},${Product_Price},${Item_Number},${Model_Number},${Product_Description},${product_category}\n`);
         
